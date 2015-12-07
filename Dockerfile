@@ -25,20 +25,20 @@ RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup &&\
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
-#VOLUME ["/config","/data"]
-
-#ADD ./start.sh /start.sh
-#RUN chmod u+x  /start.sh
-
-#ADD ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-#ENV RUN_AS_ROOT="true" \
-#    CHANGE_DIR_RIGHTS="false" \
-#    CHANGE_CONFIG_DIR_OWNERSHIP="true" \
-#    HOME="/config"
-
+# VOLUME ["/config","/data"]
 EXPOSE 32400
 
-RUN service plexmediaserver start
+ENV RUN_AS_ROOT="true" \
+    CHANGE_DIR_RIGHTS="false" \
+    CHANGE_CONFIG_DIR_OWNERSHIP="true" \
+    HOME="/config"
 
-#CMD ["/start.sh"]
+# RUN service plexmediaserver start
+
+# ADD ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+
+ADD ./start.sh /start.sh
+RUN chmod u+x  /start.sh
+
+CMD ["/start.sh"]
