@@ -2,6 +2,10 @@ Dockerized Ubuntu Plex Media Server
 ===================================
 
 
+** Incomplete **
+
+
+
 ```bash
 docker rm -f plex >/dev/null
 docker build -t smj10j/plexmediaserver-ubuntu . && \
